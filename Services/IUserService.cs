@@ -8,5 +8,6 @@ namespace Register.Services
 {
     internal interface IUserService
     {
+
     }
 }
