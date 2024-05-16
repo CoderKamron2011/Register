@@ -1,4 +1,5 @@
-﻿namespace Register.Brokers.Logging
+﻿
+namespace Register.Brokers.Logging
 {
     internal interface ILoggingBroker
     {

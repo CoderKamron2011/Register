@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿//----------------------------------------
+// Great Code Team (c) All rights reserved
+//----------------------------------------
+using Register.Models;
 namespace Register.Services
 {
     internal interface IUserService
     {
-
+        bool LogIn(Users user);
+        Users SignUp(Users user);
     }
 }
