@@ -1,4 +1,7 @@
-﻿namespace Register.Brokers.Logging
+﻿//----------------------------------------
+// Great Code Team (c) All rights reserved
+//----------------------------------------
+namespace Register.Brokers.Logging
 {
     internal class LoggingBroker : ILoggingBroker
     {

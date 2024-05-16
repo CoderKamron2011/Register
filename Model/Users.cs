@@ -1,4 +1,7 @@
-﻿namespace Register.Models
+﻿//----------------------------------------
+// Great Code Team (c) All rights reserved
+//----------------------------------------
+namespace Register.Models
 {
    public class Users
     {
