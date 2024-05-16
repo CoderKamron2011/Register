@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Register.Models;
 
 namespace Register.Broker.Storage
 {
     internal interface IStorageBroker
     {
+        bool CheckoutUser(Users user);
+        Users SignUpUser(Users user);
     }
 }
