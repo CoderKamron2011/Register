@@ -43,7 +43,7 @@ namespace Register.Services
             if (String.IsNullOrWhiteSpace(user.Email)
               || String.IsNullOrWhiteSpace(user.Pasword))
             {
-                this.loggingBroker.LogError("Invalid user information.");
+                this.loggingBroker.LogError("Invalid user information");
                 return new Users();
             }
             else
@@ -62,7 +62,7 @@ namespace Register.Services
         }
         private bool InvalidLogInUser()
         {
-            this.loggingBroker.LogError("Sizning login yoki parolingiz noto'g'ri kiritilgan");
+            this.loggingBroker.LogError("your email or password is null");
             return false;
         }
         private bool ValidationAndLogIn(Users user)
