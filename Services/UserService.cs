@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 //----------------------------------------
-// Great Code Team (c) All rights reserved
+// Great Code Team (c) All rights reserved  
 //----------------------------------------
 namespace Register.Services
 {
@@ -21,15 +21,36 @@ namespace Register.Services
             this.loggingBroker = new LoggingBroker();
             this.storageBroker = new ArrayStorageBroker();
         }
-        public bool LogIn(Users user)
+        public Users LogIn(Users user )
         {
-            
+            return user is null
+                ? InvalidLogInByEmail()
+                : ValidationAndLogIn(user);
+        }
+
+        private Users ValidationAndLogIn(Users user)
+        {
+            Users isUser = this.storageBroker.ReadUser(user);
+            if (isUser is not null)
+            {
+                this.loggingBroker.LogInformation("Success.");
+                return isUser;
+            }
+            else
+            {
+                this.loggingBroker.LogError("No data found for this Email.");
+                return new Users();
+            }
         }
 
         public Users SignUp(Users user)
         {
-              
+            return new Users();
         }
-        
+        private Users InvalidLogInByEmail()
+        {
+            this.loggingBroker.LogError("Invalid.");
+            return new Users();
+        }
     }
 }
