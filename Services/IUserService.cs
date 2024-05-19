@@ -4,9 +4,9 @@
 using Register.Models;
 namespace Register.Services
 {
-    internal interface IUserService
-    {
-        bool LogIn(Users user);
-        Users SignUp(Users user);
+    internal interface IUserService 
+    {   
+        Users LogIn(Users user);         
+        Users SignUp(Users user);  
     }
-}
+}   

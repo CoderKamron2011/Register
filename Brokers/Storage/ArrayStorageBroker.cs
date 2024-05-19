@@ -56,5 +56,21 @@ namespace Register.Broker.Storage
             }
             return false;
         }
+
+        public Users ReadUser(string Email)
+        {
+            for (int itaration = 0; itaration < UsersInfo.Length; itaration++)
+            {
+                if (UsersInfo[itaration] is not null)
+                {
+                    if (UsersInfo[itaration].Email == Email)
+                    {
+                        return UsersInfo[itaration];
+                    }
+                }
+            }
+
+            return new Users();
+        }
     }
 }
