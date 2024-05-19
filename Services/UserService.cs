@@ -21,36 +21,71 @@ namespace Register.Services
             this.loggingBroker = new LoggingBroker();
             this.storageBroker = new ArrayStorageBroker();
         }
-        public Users LogIn(Users user )
+        public bool LogIn(Users user)
         {
             return user is null
-                ? InvalidLogInByEmail()
+                ? InvalidLogInUser()
                 : ValidationAndLogIn(user);
         }
-
-        private Users ValidationAndLogIn(Users user)
+        public Users SignUp(Users user)
         {
-            Users isUser = this.storageBroker.ReadUser(user);
-            if (isUser is not null)
+            return user is null
+                ? InvalidSignUp()
+                : ValidationAndSignUpUser(user);
+        }
+        private Users InvalidSignUp()
+        {
+            this.loggingBroker.LogError("User information is null.");
+            return new Users();
+        }
+        private Users ValidationAndSignUpUser(Users user)
+        {
+            if (String.IsNullOrWhiteSpace(user.Email)
+              || String.IsNullOrWhiteSpace(user.Pasword))
             {
-                this.loggingBroker.LogInformation("Success.");
-                return isUser;
+                this.loggingBroker.LogError("Invalid user information.");
+                return new Users();
             }
             else
             {
-                this.loggingBroker.LogError("No data found for this Email.");
-                return new Users();
+                var userInformation = this.storageBroker.SignUpUser(user);
+                if (userInformation is null)
+                {
+                    this.loggingBroker.LogError("Not added user info");
+                }
+                else
+                {
+                    this.loggingBroker.LogInformation("Added user");
+                }
+                return userInformation;
             }
         }
-
-        public Users SignUp(Users user)
+        private bool InvalidLogInUser()
         {
-            return new Users();
+            this.loggingBroker.LogError("Sizning login yoki parolingiz noto'g'ri kiritilgan");
+            return false;
         }
-        private Users InvalidLogInByEmail()
+        private bool ValidationAndLogIn(Users user)
         {
-            this.loggingBroker.LogError("Invalid.");
-            return new Users();
+            if (String.IsNullOrWhiteSpace(user.Email)
+                || String.IsNullOrWhiteSpace(user.Pasword))
+            {
+                this.loggingBroker.LogError("Incoming data is incomplete");
+                return false;
+            }
+            else
+            {
+                bool userInfo = this.storageBroker.CheckoutUser(user);
+                if (userInfo is true)
+                {
+                    this.loggingBroker.LogInformation("successful");
+                }
+                else
+                {
+                    this.loggingBroker.LogError("Not found");
+                }
+                return userInfo;
+            }
         }
     }
 }
