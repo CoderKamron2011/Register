@@ -15,13 +15,13 @@ namespace Register.Broker.Storage
             {
                 Name = "Kamron",
                 Email = "kamronbek@gmail.com",
-                Pasword = "Sjjssjjs"
+                Pasword = "sjjssjjs"
             };
             this.UsersInfo[1] = new Users()
             {
                 Email = "afruzbek@gmail.com",
-                Name = "Afruz",
-                Pasword = "Afruzcoder"
+                Name = "afruz",
+                Pasword = "afruzcoder"
             };
         }
         public Users SignUpUser(Users user)
@@ -57,7 +57,7 @@ namespace Register.Broker.Storage
             return false;
         }
 
-        public Users ReadUser(string Email)
+        public Users ReadUser(Users user, string Email)
         {
             for (int itaration = 0; itaration < UsersInfo.Length; itaration++)
             {
@@ -71,6 +71,11 @@ namespace Register.Broker.Storage
             }
 
             return new Users();
+        }
+
+        public Users ReadUser(string email)
+        {
+            throw new NotImplementedException();
         }
     }
 }

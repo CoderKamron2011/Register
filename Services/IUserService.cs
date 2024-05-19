@@ -6,7 +6,7 @@ namespace Register.Services
 {
     internal interface IUserService 
     {   
-        Users LogIn(Users user);         
+        bool LogIn(Users user);         
         Users SignUp(Users user);  
     }
 }   
